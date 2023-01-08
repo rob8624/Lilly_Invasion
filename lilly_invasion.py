@@ -1,6 +1,8 @@
 import pygame
 import sys
 from settings import Settings
+from lilly import Lilly
+
 class LillyInvasion:
 
     def __init__(self):
@@ -9,6 +11,7 @@ class LillyInvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width,
                                                self.settings.screen_height))
         pygame.display.set_caption(self.settings.window_caption)
+        self.lilly = Lilly(self)
 
 
     def run_game(self):
@@ -20,8 +23,10 @@ class LillyInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT : sys.exit()
 
+
     def _update_screen_(self):
         self.screen.fill(self.settings.bf_color)
+        self.lilly.blitme()
         pygame.display.flip()
 
 
