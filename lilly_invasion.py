@@ -17,11 +17,29 @@ class LillyInvasion:
     def run_game(self):
         while True:
             self._check_events_()
+            self.lilly.update()
             self._update_screen_()
 
     def _check_events_(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT : sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._keydown_events_(event)
+            elif event.type == pygame.KEYUP:
+                self._keyup_events_(event)
+
+    def _keydown_events_(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.lilly.move_right = True
+        elif event.key == pygame.K_LEFT:
+            self.lilly.move_left = True
+
+    def _keyup_events_(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.lilly.move_right = False
+        elif event.key == pygame.K_LEFT:
+            self.lilly.move_left = False
+
 
 
     def _update_screen_(self):
